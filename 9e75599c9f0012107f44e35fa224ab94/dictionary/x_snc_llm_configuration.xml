@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="5a2619dc9f0012107f44e35fa224ab89" label="Configuration" max_length="40" name="x_snc_llm_configuration" type="collection">
+        <element label="Max Incidentes" max_length="40" name="max_incidentes" type="integer"/>
+        <element label="Max token" max_length="40" name="max_token" type="integer"/>
+        <element label="Minimum incidents" max_length="40" name="minimum_incidents" type="integer"/>
+        <element label="Temperature" max_length="40" name="temperature" type="integer"/>
+    </element>
+</database>
