@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="x_snc_llm_configuration" version="2" view="">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>active</element>
+            <list_id display_value="x_snc_llm_configuration" element="NULL" name="x_snc_llm_configuration" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">032025989f4012107f44e35fa224ab49</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-08-12 02:17:30</sys_created_on>
+            <sys_id>cb2025989f4012107f44e35fa224ab49</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-08-12 02:17:30</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>ml_similarity_solution</element>
+            <list_id display_value="x_snc_llm_configuration" element="NULL" name="x_snc_llm_configuration" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">032025989f4012107f44e35fa224ab49</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-08-12 02:17:30</sys_created_on>
+            <sys_id>4f2025989f4012107f44e35fa224ab49</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-08-12 02:17:30</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>temperature</element>
+            <list_id display_value="x_snc_llm_configuration" element="NULL" name="x_snc_llm_configuration" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">032025989f4012107f44e35fa224ab49</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-08-12 02:17:30</sys_created_on>
+            <sys_id>cf2025989f4012107f44e35fa224ab49</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-08-12 02:17:30</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>minimum_incidents</element>
+            <list_id display_value="x_snc_llm_configuration" element="NULL" name="x_snc_llm_configuration" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">032025989f4012107f44e35fa224ab49</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-08-12 02:17:30</sys_created_on>
+            <sys_id>432025989f4012107f44e35fa224ab4a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-08-12 02:17:30</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>max_incidentes</element>
+            <list_id display_value="x_snc_llm_configuration" element="NULL" name="x_snc_llm_configuration" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">032025989f4012107f44e35fa224ab49</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>4</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-08-12 02:17:30</sys_created_on>
+            <sys_id>c32025989f4012107f44e35fa224ab4a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-08-12 02:17:30</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>max_token</element>
+            <list_id display_value="x_snc_llm_configuration" element="NULL" name="x_snc_llm_configuration" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">032025989f4012107f44e35fa224ab49</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>5</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-08-12 02:17:30</sys_created_on>
+            <sys_id>472025989f4012107f44e35fa224ab4a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-08-12 02:17:30</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_created_on</element>
+            <list_id display_value="x_snc_llm_configuration" element="NULL" name="x_snc_llm_configuration" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">032025989f4012107f44e35fa224ab49</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>6</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-08-12 02:17:30</sys_created_on>
+            <sys_id>c72025989f4012107f44e35fa224ab4a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-08-12 02:17:30</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_created_by</element>
+            <list_id display_value="x_snc_llm_configuration" element="NULL" name="x_snc_llm_configuration" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">032025989f4012107f44e35fa224ab49</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>7</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-08-12 02:17:30</sys_created_on>
+            <sys_id>4b2025989f4012107f44e35fa224ab4a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-08-12 02:17:30</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_snc_llm_configuration</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-08-12 02:17:30</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>032025989f4012107f44e35fa224ab49</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_snc_llm_configuration</sys_name>
+            <sys_package display_value="LLM" source="x_snc_llm">9e75599c9f0012107f44e35fa224ab94</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="LLM">9e75599c9f0012107f44e35fa224ab94</sys_scope>
+            <sys_update_name>sys_ui_list_x_snc_llm_configuration_null</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-08-12 02:17:30</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

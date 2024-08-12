@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_llm.Predictive_Intelligence_LLM</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>Predictive_Intelligence_LLM</name>
+        <script><![CDATA[var Predictive_Intelligence_LLM = Class.create();
+Predictive_Intelligence_LLM.prototype = {
+    initialize: function() {
+		this._current_configuration = function() {
+			var c_config = new GlideRecord('x_snc_llm_configuration');
+			c_config.addQuery('active', true);
+			c_config.setLimit(1);
+			c_config.query();
+			if (c_config.next()){
+				return c_config;
+			} else {
+				return false;
+			}
+		};
+    },
+	
+	_getMaxToken: function() {
+		if (!gs.nil(this._current_configuration)) {
+			return this._current_configuration.getValue('max_token');
+		}
+		 else {
+			return false;
+		}
+	},
+	_getMaxIncidents: function() {
+		if (!gs.nil(this._current_configuration)) {
+			return this._current_configuration.getValue('max_incidentes');
+		}
+		 else {
+			return false;
+		}
+	},
+	_getMinIncidents: function() {
+		if (!gs.nil(this._current_configuration)) {
+			return this._current_configuration.getValue('minimum_incidents');
+		}
+		else {
+			return false;
+		}
+	},
+	
+	_getMLSimilaritySolution: function() {
+		if (!gs.nil(this._current_configuration)) {
+			return this._current_configuration.getValue('minimum_incidents');
+		} else {
+			return false;
+		}
+	},
+	
+	getSimilaresIncidentes : function(IncidentField) {
+		var response = {'success' : false , 'incidents_sysid' : [], 'error' : ''};
+		
+		if (!this._getMLSimilaritySolution()) {
+			response.error = 'There is no ML Similarity Solution defined. Verify Configuration LLM table.'; 
+			return response;
+		}
+		
+		var mlSolution = sn_ml.SimilaritySolutionStore.get(this._getMLSimilaritySolution());
+
+		// single GlideRecord input
+		var input = new GlideRecord("incident");
+		input.get("<sys_id>");
+
+		// configure optional parameters
+		var options = {};
+		options.top_n = 3;
+		options.apply_threshold = false;
+
+		var results = mlSolution.getVersion(1).predict(input, options);
+		// pretty print JSON results
+		gs.print(JSON.stringify(JSON.parse(results), null, 2));
+	},
+	
+	
+    type: 'Predictive_Intelligence_LLM'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-08-12 02:01:14</sys_created_on>
+        <sys_id>e16c59949f4012107f44e35fa224ab5e</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Predictive_Intelligence_LLM</sys_name>
+        <sys_package display_value="LLM" source="x_snc_llm">9e75599c9f0012107f44e35fa224ab94</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="LLM">9e75599c9f0012107f44e35fa224ab94</sys_scope>
+        <sys_update_name>sys_script_include_e16c59949f4012107f44e35fa224ab5e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-08-12 02:09:08</sys_updated_on>
+    </sys_script_include>
+</record_update>

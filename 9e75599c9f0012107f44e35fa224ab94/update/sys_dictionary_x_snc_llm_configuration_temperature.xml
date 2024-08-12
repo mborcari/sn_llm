@@ -5,7 +5,7 @@
         <attributes/>
         <audit>false</audit>
         <calculation/>
-        <choice>0</choice>
+        <choice/>
         <choice_field/>
         <choice_table/>
         <column_label>Temperature</column_label>
@@ -27,7 +27,7 @@
         <formula/>
         <function_definition/>
         <function_field>false</function_field>
-        <internal_type display_value="Integer">integer</internal_type>
+        <internal_type display_value="Decimal">decimal</internal_type>
         <mandatory>false</mandatory>
         <max_length>40</max_length>
         <name>x_snc_llm_configuration</name>
@@ -53,7 +53,7 @@
         <sys_scope display_value="LLM">9e75599c9f0012107f44e35fa224ab94</sys_scope>
         <sys_update_name>sys_dictionary_x_snc_llm_configuration_temperature</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-12 01:33:46</sys_updated_on>
+        <sys_updated_on>2024-08-12 02:16:20</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>
