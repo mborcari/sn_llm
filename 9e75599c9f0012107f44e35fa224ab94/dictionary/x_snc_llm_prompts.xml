@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="a47c6b784700121044d5eb0f316d43dc" label="Prompts" max_length="40" name="x_snc_llm_prompts" type="collection">
+        <element label="Assistant role" max_length="4000" name="assistant_role" type="string"/>
+        <element display="true" label="Name" mandatory="true" max_length="40" name="name" type="string"/>
+        <element label="System role" max_length="4000" name="system_role" type="string"/>
+        <element label="User role" max_length="4000" name="user_role" type="string"/>
+    </element>
+</database>

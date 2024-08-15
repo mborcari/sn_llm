@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_snc_llm.Predictive_Intelligence_LLM_client</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>Predictive_Intelligence_LLM_client</name>
+        <script><![CDATA[var Predictive_Intelligence_LLM_client = Class.create();
+Predictive_Intelligence_LLM_client.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+    type: 'Predictive_Intelligence_LLM_client',
+
+	generateSolution: function() {
+		var description = this.getParameter('sysparm_description');
+		var getSolution = new x_snc_llm.Predictive_Intelligence_LLM();
+		var response = getSolution.workflowGenerateSolution(description);
+		return response;
+		
+	},
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-08-14 02:41:39</sys_created_on>
+        <sys_id>f24533784740121044d5eb0f316d433e</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>Predictive_Intelligence_LLM_client</sys_name>
+        <sys_package display_value="LLM" source="x_snc_llm">9e75599c9f0012107f44e35fa224ab94</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="LLM">9e75599c9f0012107f44e35fa224ab94</sys_scope>
+        <sys_update_name>sys_script_include_f24533784740121044d5eb0f316d433e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-08-14 06:24:23</sys_updated_on>
+    </sys_script_include>
+</record_update>

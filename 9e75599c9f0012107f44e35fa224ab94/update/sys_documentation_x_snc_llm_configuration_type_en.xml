@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="type" label="Type GenAI" language="en" table="x_snc_llm_configuration">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>type</element>
+            <help/>
+            <hint/>
+            <label>Type GenAI</label>
+            <language>en</language>
+            <name>x_snc_llm_configuration</name>
+            <plural>Type GenAIs</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2024-08-15 00:08:43</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Type GenAI</sys_name>
+            <sys_package display_value="LLM" source="x_snc_llm">9e75599c9f0012107f44e35fa224ab94</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="LLM">9e75599c9f0012107f44e35fa224ab94</sys_scope>
+            <sys_update_name>sys_documentation_x_snc_llm_configuration_type_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2024-08-15 00:08:43</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

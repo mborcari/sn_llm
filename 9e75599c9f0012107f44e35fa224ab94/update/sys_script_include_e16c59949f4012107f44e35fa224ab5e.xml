@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
     <sys_script_include action="INSERT_OR_UPDATE">
-        <access>package_private</access>
+        <access>public</access>
         <active>true</active>
         <api_name>x_snc_llm.Predictive_Intelligence_LLM</api_name>
         <caller_access/>
@@ -20,25 +20,35 @@ Predictive_Intelligence_LLM.prototype = {
 			} else {
 				return false;
 			}
-		};
-    },
-	
+		}();
+
+		this.promptSummarize  = [
+					{ 	
+						role: "system", 
+						content: "You receive several solutions to same issue, try organize and summarize then to provider a concise solution related." },
+					{
+						role: "user",
+						content: "",
+					},
+		]
+				
+	},
+
 	_getMaxToken: function() {
 		if (!gs.nil(this._current_configuration)) {
 			return this._current_configuration.getValue('max_token');
-		}
-		 else {
+		} else {
 			return false;
 		}
 	},
 	_getMaxIncidents: function() {
 		if (!gs.nil(this._current_configuration)) {
 			return this._current_configuration.getValue('max_incidentes');
-		}
-		 else {
+		} else {
 			return false;
 		}
 	},
+
 	_getMinIncidents: function() {
 		if (!gs.nil(this._current_configuration)) {
 			return this._current_configuration.getValue('minimum_incidents');
@@ -47,6 +57,60 @@ Predictive_Intelligence_LLM.prototype = {
 			return false;
 		}
 	},
+
+	_getModelName: function() {
+		if (!gs.nil(this._current_configuration)) {
+			return this._current_configuration.getValue('model');
+		}
+		else {
+			return false;
+		}
+	},
+
+	_getTemperature: function() {
+		if (!gs.nil(this._current_configuration)) {
+			return parseFloat(this._current_configuration.getValue('temperature'));
+		}
+		else {
+			return false;
+		}
+	},
+
+	_getType: function() {
+		if (!gs.nil(this._current_configuration)) {
+			return this._current_configuration.getValue('type');
+		}
+		else {
+			return false;
+		}
+	},
+
+	
+
+	_getSysPrompt: function() {
+		if (!gs.nil(this._current_configuration)) {
+			return this._current_configuration.prompt.system_role.toString();
+		} else {
+			return false;
+		}
+	},
+
+	_getAssistantPrompt: function() {
+		if (!gs.nil(this._current_configuration)) {
+			return this._current_configuration.prompt.assistant_role.toString();
+		} else {
+			return false;
+		}
+	},
+
+	_getUserPrompt: function() {
+		if (!gs.nil(this._current_configuration)) {
+			return this._current_configuration.prompt.user_role.toString();
+		} else {
+			return false;
+		}
+	},
+	
 	
 	_getMLSimilaritySolution: function() {
 		if (!gs.nil(this._current_configuration)) {
@@ -56,7 +120,7 @@ Predictive_Intelligence_LLM.prototype = {
 		}
 	},
 	
-	getSimilaresIncidentes : function(IncidentField) {
+	getSimilaresIncidentes : function(field, value) {
 		var response = {'success' : false , 'incidents_sysid' : [], 'error' : ''};
 		
 		if (!this._getMLSimilaritySolution()) {
@@ -67,19 +131,133 @@ Predictive_Intelligence_LLM.prototype = {
 		var mlSolution = sn_ml.SimilaritySolutionStore.get(this._getMLSimilaritySolution());
 
 		// single GlideRecord input
-		var input = new GlideRecord("incident");
-		input.get("<sys_id>");
-
+		var input = [{field, value}];
 		// configure optional parameters
 		var options = {};
 		options.top_n = 3;
 		options.apply_threshold = false;
 
-		var results = mlSolution.getVersion(1).predict(input, options);
-		// pretty print JSON results
-		gs.print(JSON.stringify(JSON.parse(results), null, 2));
+		var results = mlSolution.getActiveVersion().predict(input, options);
+		var obj = JSON.parse(results);
+		var x;
+		var y;
+		var responseBody = {'result' : []}; //In this example, we will store results in an array
+
+		//Loop through each identifier
+		for(x in obj){
+				//Loop through each result
+				for(y in obj[x]){
+						responseBody.result.push({'sys_id': obj[x][y].predictedValue, 'threshold' : obj[x][y].threshold});
+			
+				}
+		}
+		return responseBody;
 	},
-	
+
+	getSimilaresIncidentesMockfromAPI: function(description, top_n) {
+		try { 
+			var r = new sn_ws.RESTMessageV2('global.LLM incidents', 'GET');
+			r.setStringParameterNoEscape('description', description);
+			r.setStringParameterNoEscape('top_n', top_n);
+			var response = r.execute();
+			var responseBody = JSON.parse(response.getBody());
+			var httpStatus = response.getStatusCode();
+			}
+			catch(ex) {
+				var message = ex.message;
+			}
+
+			return {'responseBody' : responseBody.result, 'status' :  httpStatus, 'message' : message};
+	},
+
+	callOpenAI: function(sysPrompt, assistantPrompt, question, context, modelName, temperature) {
+		try { 
+			var r = new sn_ws.RESTMessageV2('x_snc_llm.OpenAI', 'POST');
+			var apiToken = gs.getProperty('OpenAIToken');
+			r.setStringParameterNoEscape('token', 'Bearer ' + apiToken);
+			gs.addErrorMessage(context)
+			var body = {
+				"model" : modelName,
+				"messages": [
+					{
+						"role": "system",
+						"content": sysPrompt
+					},
+								]
+				};
+
+			if (!gs.nil(temperature)){
+				body.temperature = temperature;
+			}
+
+			if (assistantPrompt){
+				body.messages.push({
+									"role": "assistant",
+									"content": context
+								});
+
+				body.messages.push({
+									"role": "user",
+									"content": question
+								});
+
+			} else {
+				body.messages.push({
+						"role": "user",
+						"content": question + ' ' + context
+					});
+			}
+			gs.addInfoMessage(JSON.stringify(body));
+			r.setRequestBody(JSON.stringify(body));
+
+			var response = r.execute();
+			var responseBody = JSON.parse(response.getBody());
+			var httpStatus = response.getStatusCode();
+
+			return {'content' : responseBody.choices[0].message.content, 'status' :  httpStatus, 'message' : message};
+		}
+		catch(ex) {
+			var message = ex.message;
+		}
+	},
+
+	workflowGenerateSolution: function(description) {
+		// get incidents simlarity
+		try {
+			var response = this.getSimilaresIncidentesMockfromAPI(description=description, top_n=this._getMaxIncidents());
+			var solutionResponse = response.responseBody.solutions;
+			var allSolutions, _question, _context = '';
+
+			solutionResponse.forEach(function(obj){
+				allSolutions = allSolutions + obj.solution +'\n';
+			});
+			// monta a questão considerando prompt do usuário mais descrição.
+			_question = this._getUserPrompt() + description;
+
+			var useAssistantPrompt = false;
+
+			// se configuraçaõ do tipo generetate, monte o assistant prompt
+			if (this._getType() == 'generate') {
+				useAssistantPrompt = true;
+				_context = this._getAssistantPrompt() + ' ' + allSolutions;
+			} else {
+				_context = allSolutions;
+			}
+			
+			var solutionGeneratedResponse = this.callOpenAI(
+															sysPrompt=this._getSysPrompt(),
+															assistantPrompt=useAssistantPrompt,
+															question=_question,
+															context=_context,
+															modelName=this._getModelName(),
+															temperature=this._getTemperature(),
+															);
+			// return sumarize solution
+			return solutionGeneratedResponse.content;
+		}catch(ex) {
+			return ex.message;
+		}
+	},
 	
     type: 'Predictive_Intelligence_LLM'
 };]]></script>
@@ -87,13 +265,13 @@ Predictive_Intelligence_LLM.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-08-12 02:01:14</sys_created_on>
         <sys_id>e16c59949f4012107f44e35fa224ab5e</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>60</sys_mod_count>
         <sys_name>Predictive_Intelligence_LLM</sys_name>
         <sys_package display_value="LLM" source="x_snc_llm">9e75599c9f0012107f44e35fa224ab94</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="LLM">9e75599c9f0012107f44e35fa224ab94</sys_scope>
         <sys_update_name>sys_script_include_e16c59949f4012107f44e35fa224ab5e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-12 02:09:08</sys_updated_on>
+        <sys_updated_on>2024-08-15 00:38:03</sys_updated_on>
     </sys_script_include>
 </record_update>

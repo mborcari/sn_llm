@@ -32,8 +32,8 @@
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
 
 	var configs = new GlideRecord('x_snc_llm_configuration');
-	configs.addActiveQuery('sys_id', '!=', current.getUniqueValue());
-	configs.addActiveQuery('active', true);
+	configs.addQuery('sys_id', '!=', current.getUniqueValue());
+	configs.addQuery('active', true);
 	configs.query();
 	if (configs.hasNext()){
 		gs.addErrorMessage('There is another configuration currently active and  only one at a time can be active.');
@@ -47,7 +47,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>62ae9d189f4012107f44e35fa224ab6b</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Unique Configuration Active</sys_name>
         <sys_overrides/>
         <sys_package display_value="LLM" source="x_snc_llm">9e75599c9f0012107f44e35fa224ab94</sys_package>
@@ -55,7 +55,7 @@
         <sys_scope display_value="LLM">9e75599c9f0012107f44e35fa224ab94</sys_scope>
         <sys_update_name>sys_script_62ae9d189f4012107f44e35fa224ab6b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-08-12 02:15:30</sys_updated_on>
+        <sys_updated_on>2024-08-14 01:53:28</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>

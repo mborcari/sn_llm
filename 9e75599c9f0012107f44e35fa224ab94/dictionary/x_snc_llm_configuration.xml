@@ -5,10 +5,22 @@
         <element label="Max token" max_length="40" name="max_token" type="integer"/>
         <element label="Minimum incidents" max_length="40" name="minimum_incidents" type="integer"/>
         <element label="ML Similarity Solution" max_length="32" name="ml_similarity_solution" reference="ml_capability_definition_similarity" type="reference"/>
+        <element label="Model" max_length="100" name="model" type="string"/>
+        <element display="true" label="Name" mandatory="true" max_length="40" name="name" type="string"/>
         <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Prompt" max_length="32" name="prompt" reference="x_snc_llm_prompts" type="reference"/>
         <element label="Temperature" max_length="40" name="temperature" type="decimal"/>
+        <element choice="1" label="Type GenAI" max_length="40" name="type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Generate Content" value="generate"/>
+                <element inactive_on_update="false" label="Summarize" value="summarize"/>
+            </choice>
+        </element>
         <index name="index">
             <element name="ml_similarity_solution"/>
+        </index>
+        <index name="index2">
+            <element name="prompt"/>
         </index>
     </element>
 </database>
